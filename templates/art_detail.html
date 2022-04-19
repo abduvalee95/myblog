@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}  {{ post.title_tag }} {{ post.author.first_name}} {% endblock %}
+
+{% block content %}
+
+
+<h1>{{ post.title }}</h1>
+<small>От: {{ post.author.first_name }}  {{ post.author.last_name }} - {{ post.data }}</small><br>
+<hr>
+<br/>
+{% if post.img %}
+<img src="{{ post.img.url }}" alt="" style="width: 250px;height: 250px;">
+<form action="{% url 'like_post' post.pk %}" method="POST" >
+        {% csrf_token %}
+        <button type="submit", name="post_id", value="{{ post.id}}" class="btn btn-primary btn-sm" > Нравится </button>{{ total_likes }} -like
+
+
+</form>
+
+
+{% endif %}
+
+{{ post.body|safe }}
+
+
+<br> <br/>
+{% if user.is_authenticated %}
+<a href="{% url 'home' %}" class=" btn btn-dark"> Назад </a> 
+
+<a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Изменить</a>
+
+<br/><br/>
+<hr>
+<br>
+
+
+
+{% else %}
+
+Noo
+{% endif%}
+ 
+{% endblock %}

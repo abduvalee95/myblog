@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Обновлят Пост {{ post.author.first_name}} {% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1> Изменить Пост </h1>
+
+    <div class="form-control" > 
+    <form  method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn btn-success"  style="border-radius: 70%;">Изменить</button>
+    </div>
+{% else %}
+
+Noo
+{% endif%}
+
+{% endblock %}

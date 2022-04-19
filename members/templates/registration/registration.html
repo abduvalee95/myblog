@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Создат аккаунт {{ post.author.first_name}} {% endblock %}
+
+
+{% block content %}
+
+<h1 style="color: green;" > Регистрация </h1>
+<br/> <hr> <br/>
+<div class="form-control"> 
+<form  method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-outline-secondary" style="color: green;" style="border-radius: 70%;"> Зарегистрировать </button>
+</div>
+
+{% endblock %}

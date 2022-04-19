@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Удалить Пост {{ post.author.first_name}} {% endblock %}
+
+
+{% block content %}
+
+<!-- <h1> Удалить Пост </h1> -->
+{% if user.is_authenticated %}
+    <h3>Вы хотите удалить: {{ post.title }} </h3>
+    <br>
+    <div class="form-control"> 
+        <form  method="post" >
+            {% csrf_token %}
+            <strong>Вы уверень что хотите удалить этот пост </strong> <br/> <br/>
+            <button class="btn btn-outline-secondary"  style="border-radius: 20%;">Да</button>
+            
+            <a  href="{% url 'home' %}">  <button class="btn btn-outline-success"  style="border-radius: 50%;">Нет</button>  </a>
+
+    </div>
+{% else %}
+
+Noo
+{% endif%}
+{% endblock %}

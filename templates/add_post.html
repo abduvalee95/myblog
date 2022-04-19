@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Создат новый Пост {{ post.author.first_name}} {% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Добавлят Блог </h1>
+    <br/> <hr> <br/>
+    <div class="form-control"> 
+        <form  method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn btn-success"  style="border-radius: 70%;"> Публикация пост </button>
+    </div>  
+{% else %}
+
+Noo
+{% endif%}
+
+{% endblock %}
